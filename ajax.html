@@ -1,0 +1,77 @@
+<html>  
+<head>  
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>  
+<script type="text/javascript">  
+            //This means 'call all content within the braces after the document is loaded  
+            $(function(){    
+              console.log("loaded");
+                //Attach a click handler to the button click event  
+             $('#btnLoadAjax').click(function () {  
+                   
+                 //Write a Test message to the div  
+                   
+              
+             
+             
+           var  url = "json1.php";  
+                  
+                //Clear the div containing the message  
+           $("#ajaxContent").empty();  
+                  
+                  
+           $.getJSON(url, function(data){  
+                      
+          var items = "";
+          
+            
+                        /*  
+                            Use the jquery $.each() function to iterate through 
+                            item in the array  
+                            In this case we wrap each item in a paragraph tag 
+                        */  
+                        $.each(data, function(i,jsonItem){  
+                            items += "<p>" + jsonItem + "</p>";  
+  
+                        });  
+  
+                      
+                      
+                        /* 
+                            Outside the $.each() function, we append the content to the div 
+                             
+                        */  
+                      
+                      
+                        $('#ajaxContent').append(items);  
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+              });  
+                       
+             } );
+                    
+            }); // all content will go inside the two {}                   
+</script>  
+<style>  
+/* Simple styling for the div that will hold our content */  
+.ajaxContent {border: solid 1px #999; height: 200px; width: 200px;}  
+</style>  
+</head>  
+<body>  
+<input type="button" id="btnLoadAjax" name ="btnLoadAjax" value="Load Ajax" />  
+<div id="ajaxContent" class="ajaxContent" />  
+</body>  
+</html>  
