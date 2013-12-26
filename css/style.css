@@ -1,0 +1,40 @@
+body {
+	background: #64ce6f;
+}
+
+
+
+table {
+	background-color: white;
+	padding: 1em;
+}
+
+
+
+.insert-form h3 {
+	text-align: center;
+	padding-bottom: 1em;
+}
+
+.panel {
+	background-color: #eeeefe;
+	padding: 2em;
+	margin-top: 1em;
+	-moz-border-radius:10px;  /* for Firefox */
+	-webkit-border-radius:10px; /* for Webkit-Browsers */
+	border-radius:10px; /* regular */
+	opacity:0.9;
+}
+
+
+.login {
+	background-color: #eeeefe;
+	padding-top: 2em;
+	margin-top: 3em;
+	-moz-border-radius:10px;  /* for Firefox */
+	-webkit-border-radius:10px; /* for Webkit-Browsers */
+	border-radius:10px; /* regular */
+	opacity:0.9;
+	text-align: center;
+
+}

@@ -10,70 +10,32 @@ define ( "MY_APP", 1 );
 define ( "APPLICATION_PATH", "application" );
 define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 
+$activeHome = "active"; // defined active class for Bootstrap 
 include (TEMPLATE_PATH . "/public/header.html");
-
 
 ?>
 
 
 <div class="container">
-
     <div class="row">
-    <div class="span3">
-    
-    
-      
-   <button class="btn btn-info" id="btnLoadAjax">Load Json</button>
-  
-
-    
+	    <div class="span8 offset2 panel">
+	    
+		    <h1>Project Notes</h1>
+			<p>This project creates a list of confectionary products</p>
+			<p>Fix the errors, configure and rebuild this project so that it allows you to:</p>
+			<ol>
+				<li>List all products in the database.</li>
+				<li>Add products to the database.</li>
+				<li>Remove products from the database.</li>
+				<li>Add manufacturers to the database.</li>
+				<li>Remove manufacturers from the database.</li>
+				<li>Upload product images with each listing.</li>
+				<li>Add a NEW field to products showing country of origin. This can be text field or a select list. If using a select list, no more than 6 countries are required. Ensure updates handle the new country field.</li>
+			</ol>
+			<p>The sql setup is contained in the sqlsetup folder.</p>
+	     
+	    </div>
     </div>
-    <div class="span3">
-    
-    <div id="ajaxContent1" class="ajaxContent">Json to load here</div>
-        
-    </div>
-    
-        <div class="span3">
-    
-    <div id="ajaxContent2" class="ajaxContent">Json to load here</div>
-        
-    </div>
-    
-    
-       <div class="span3">
-    
-    <div id="ajaxContent3" class="ajaxContent">Json to load here</div>
-        
-    </div>
-    
-    
-    
-    
-   
-    
-    
-    </div>
-    
-    
-       <div class="row">
-         <div class="span4">
-     <button class="btn btn-info" id="btnLoadAjax2">Load Json 2</button>
-  
-    </div>
-    
-    <div class="span2">
-    <input type="text" id="movieid" style="width: 50px"/>
-    </div>
-    
-    <div class="span6">
-    <div id="ajaxContent4" class="ajaxContent">Json4 to load here</div>
-        </div>
-    </div>
-    </div>
-    
-    
-
 </div>
 
 

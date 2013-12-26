@@ -1,12 +1,14 @@
 <?php
 session_start();
 
-
+//If already logged in redirect to admin.php (PB - 30 Nov 2013 15:36)
+/*$_SESSION['loggedIn'] = 1;*/
 if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == 1) {
 
 header("Location: admin.php");
 
 }
+
 /*
  * Set up constant to ensure include files cannot be called on their own
 */
@@ -20,14 +22,17 @@ define ( "TEMPLATE_PATH", APPLICATION_PATH . "/view" );
 /*
  * Include the config.inc.php file
  */
+
 include (APPLICATION_PATH . "/inc/config.inc.php");
 include (APPLICATION_PATH . "/inc/db.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
 
 //
+
+
 function login($username, $password) {
     
-    return authenticate($username,$password);
+    return authenticate($username, $password);
 }
 
 if (!empty($_POST)) {
@@ -36,43 +41,40 @@ if (!empty($_POST)) {
     $s_password = $_POST['password'];
     if (login($s_username, $s_password)) {
         
-        $_SESSION["loggedIn"]=1;
+        $_SESSION["loggedIn"] = 1;
         header("Location: admin.php");
-    }
-    
-    
+    }   
 }
 
 include (TEMPLATE_PATH . "/public/header.html");
 ?>
+
 <div class="container">
-<form class="form-horizontal" action="login.php" method="POST">
-    
-     <div class="control-group">
-    <label class="control-label"  for="username">Username:</label> 
-      <div class="controls">
-    <input type ="text" id="username" name="username" /> 
- 	 </div>
-    </div>
-    
-     <div class="control-group">
-       <label  class="control-label"   for="password">Password</label> 
-    <div class="controls">
-    <input type="password" id="password" name="password" />
-    </div>
-    </div>
-    
-    
-    <div class="control-group">
-    <div class="controls">
-   <input type="submit" value="Login" />
-    </div>
-    </div>
-    
-    
-    
-</form>
+  <div class="row login offset3 span6 ">
 
-
-    
-    </div><!--  end container -->
+    <form class="form-horizontal " action="login.php" method="POST">
+        
+      <div class="control-group">
+        <label class="control-label"  for="username">Username:</label> 
+        <div class="controls">
+          <input type ="text" id="username" name="username" /> 
+     	  </div>
+      </div>
+        
+      <div class="control-group">
+         <label  class="control-label"   for="password">Password</label> 
+        <div class="controls">
+         <input type="password" id="password" name="password" />
+        </div>
+      </div>
+        
+      <div class="control-group">
+        <div class="controls">
+          <input type="submit" value="Login" />
+        </div>
+      </div>
+                
+    </form>
+   </div> 
+   
+</div><!--  end container -->

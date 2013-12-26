@@ -1,27 +1,14 @@
-Version 12
-This version demonstrates file upload.
+Project Notes
+This project creates a list of confectionary products
 
-The insert form has new attribute (enctype="multipart/form-data" ) to handle file uploads
+Fix the errors, configure and Rebuild this project so that it allows you to:
 
-The config file is updated with target path
+a) List all products in the database
+b) Add products to the database
+c) Remove products from the database
+d) Add manufacturers to the database
+e) Remove manufacturers from the database
+f) Upload product images with each listing
 
-The insert.php file is updated to capture the files uploaded
+The sql setup is contained in the sqlsetup folder.
 
-The functions.inc.php file contains the upload and save image functions
-
-
-
-
-Version 10
-==============
-Added api to load items via json
-
-New home page demonstrating loading of content via a json button
-
-
-
-Version 9
-================
-Added Session control to admin pages
-renamed index.php to admin.php
-Changed index.php so that it is now a front page

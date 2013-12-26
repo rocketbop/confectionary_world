@@ -1,0 +1,122 @@
+
+<?php if (isset($flashMessage) && strlen(trim($flashMessage)) > 0 ) : ?>
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">�</button>
+	<strong>Message</strong>
+	<?php echo $flashMessage ?>
+</div>
+
+<?php endif;  ?>
+<div class="container">
+	<div class="row insert-form panel offset3 span6">
+		<h3>Enter item details</h3>
+		<form class="form-horizontal" method="post" action="insert.php" enctype="multipart/form-data" >
+
+			<input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>" />
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductTitle">Product</label>
+				<div class="controls">
+					<input type="text" id="inputproductTitle" name="title" placeholder="Title"
+					value="<?php echo $product['title']; ?>">
+				</div>
+			</div>
+
+			<!-- Fixed to allow input of description, and use a placeholder PB 26 12 2013 -->
+			<div class="control-group">
+				<label class="control-label" for="inputProductDescription">Description</label>
+				<div class="controls">
+					<input type="text" id="inputProductDescription" name="description" placeholder="Description"
+					value="<?php echo $product['description']; ?>">
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductRunningTime">Price</label>
+				<div class="controls">
+					<input type="text" id="inputPrice" name="price"
+						placeholder="Price"
+						value="<?php echo $product['price']; ?>">
+				</div>
+			</div>
+
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductTitle">Manufacturer</label>
+				<div class="controls">
+					<?php 
+						$records = mf_get_all();
+						$arrayItems=array();
+						$count = sizeof($records);
+						for ($i=0; $i < $count; $i++) {
+							$arrayItems[$i]["label"]=$records[$i]['mf_title'];
+							$arrayItems[$i]["id"]=$records[$i]['mf_id'];
+						}
+						echo uihelperSelect('mf_id',$arrayItems,$product['mf_id'])
+					?>
+				</div>
+			</div>
+			
+
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductTitle">Country</label>
+				<div class="controls">
+					<?php 
+						$records = countries_get_all();
+						$arrayItems = array();
+						$count = sizeof($records);
+
+						for ($i=0; $i < $count; $i++) {
+							$arrayItems[$i]["label"]=$records[$i]['country_name'];
+							$arrayItems[$i]["id"]=$records[$i]['country_id'];
+						}
+						echo uihelperSelect('mf_id',$arrayItems,$product['mf_id'])
+					?>
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductTitle">Taste</label>
+				<div class="controls">
+					<select id="taste" name="taste">
+						<option value="Sweet"<?php echo output_selected($product['taste'],'Sweet') ?>>Sweet</option>
+						<option value="Savoury"<?php echo output_selected($product['taste'],'Savoury') ?>>Savoury</option>
+						<option value="Sour"<?php echo output_selected($product['taste'],'Sour') ?>>Sour</option>
+					</select>
+				</div>
+			</div>
+
+
+		<!--  note, you cannot style file upload button, but folllowinglink is useful -->
+		<!--  http://www.quirksmode.org/dom/inputfile.html -->
+
+			<div class="control-group">
+				<label class="control-label" for="inputproductTitle">Upload Image</label>
+				<div class="controls">
+
+					<input type="hidden" name="MAX_FILE_SIZE" value="2000000" />
+					<input name="uploadedfile" type="file" />
+				</div>
+			</div>
+			<div class="control-group">
+				<div class="controls">
+					<button type="submit" class="btn">
+						<?php echo $buttonLabel ?>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+
