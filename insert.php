@@ -22,22 +22,25 @@ include (APPLICATION_PATH . "/inc/db.inc.php");
 include (APPLICATION_PATH . "/inc/functions.inc.php");
 include (APPLICATION_PATH . "/inc/queries.inc.php");
 include (APPLICATION_PATH . "/inc/ui_helpers.inc.php");
+
 $product = array();
 $product['title'] = "";
 $product['description'] = "";
 $product['price'] = ""; // Corrected typo PB 22 12 2013
 $product['taste'] = "G";
+$product['country_id'] = 0; // Added new index (int) PB 27 12 2013
 $product['mf_id'] = 0;
 $product['movie_id']= 0;
 
 if (!empty($_POST)) {
-	
+	echo "<p>Hello</p>";
 	// echo "<p> Not empty </p>"; //Check that the above condition satisfied. PB 23 12 2013
 	$product = array();
 	$product['title'] = htmlspecialchars(strip_tags($_POST["title"]));
 	$product['description'] = htmlspecialchars(strip_tags($_POST["description"]));
 	$product['price'] = (int) htmlspecialchars(strip_tags($_POST["price"])); // fixed typo in index PB 22 12 2013 included the int function 23 12 2013 PB
 	$product['taste'] = htmlspecialchars(strip_tags($_POST["taste"])); // fixed typo in taste PB 22 12 2013
+	$product['country_id'] = (int) htmlspecialchars(strip_tags($_POST["country_id"])); //Added new line PB 27 12 2013
 	$product['mf_id'] = (int) htmlspecialchars(strip_tags($_POST["mf_id"]));            
     $product['product_id'] = isset($_POST["product_id"]) ? (int) $_POST["product_id"] : 0;
     

@@ -20,9 +20,8 @@ include (TEMPLATE_PATH . "/public/header.html");
     <div class="row">
 	    <div class="span8 offset2 panel">
 	    
-		    <h1>Project Notes</h1>
-			<p>This project creates a list of confectionary products</p>
-			<p>Fix the errors, configure and rebuild this project so that it allows you to:</p>
+		    <h1>Confectionary World</h1>
+			<p>Come and see the wonderful treats we have.</p>
 			<ol>
 				<li>List all products in the database.</li>
 				<li>Add products to the database.</li>

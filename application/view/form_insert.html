@@ -65,6 +65,7 @@
 				<div class="controls">
 					<?php 
 						$records = countries_get_all();
+
 						$arrayItems = array();
 						$count = sizeof($records);
 
@@ -72,7 +73,8 @@
 							$arrayItems[$i]["label"]=$records[$i]['country_name'];
 							$arrayItems[$i]["id"]=$records[$i]['country_id'];
 						}
-						echo uihelperSelect('mf_id',$arrayItems,$product['mf_id'])
+							
+							echo uihelperSelect('country_id',$arrayItems,$product['country_id'])
 					?>
 				</div>
 			</div>

@@ -39,10 +39,11 @@ function validateProduct($product) {
 *
 */
 //Added description PB 26 12 2013
+// Added country_id PB 27 12 2013
 function saveProduct($product) { 
 	$sqlQuery = "INSERT INTO `products` (`title`, `mf_id`, `price`,
-	`taste`, `description`)
-	VALUES ('{$product['title']}','{$product['mf_id']}', '{$product['price']}', '{$product['taste']}', '{$product['description']}')";
+	`taste`, `description`, `country_id`)
+	VALUES ('{$product['title']}','{$product['mf_id']}', '{$product['price']}', '{$product['taste']}', '{$product['description']}', '{$product['country_id']}')";
 	
 	$result = mysql_query($sqlQuery);
 

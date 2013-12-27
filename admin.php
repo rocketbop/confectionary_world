@@ -31,7 +31,7 @@ include (TEMPLATE_PATH . "/header.html");
 
 <div class="container">
 <div class="row">
-<div class="span12">
+<div class="span12 center">
 <h1>Our Cakes and Treats</h1>
 <p>Here are our current items.</p>
 </div>
@@ -44,17 +44,27 @@ include (TEMPLATE_PATH . "/header.html");
 $sqlQuery = "SELECT * FROM `products`";
 $result = mysql_query($sqlQuery);
 
+// Query the db and get countries info as need for the table. PB 27 12 2013
+$countriesSQLQuery = "SELECT * FROM `countries`";
+$countriesResult = mysql_query($countriesSQLQuery);
+
+// Created an array for the countries PB 27 12 2013
+$num = mysql_num_rows($countriesResult);
+for ($i = 0; $i < $num; $i++) {
+	$countriesArray[] = mysql_fetch_assoc($countriesResult);
+}
+//var_dump($countriesArray);
 
 if ($result) {
 	$htmlString = "";
-	$htmlString .=  "<table class='table table-bordered table-condensed' border='1'>\n";
+	$htmlString .=  "<table class='table table-bordered table-condensed table-striped' border='1'>\n";
 	
 	$htmlString .= "<tr>";
 	$htmlString .= "<th>ID</th>";
 	$htmlString .= "<th>Image</th>"; //Added a column for a thumbnail PB 26 12 2013
 	$htmlString .= "<th>Confectionary Item</th>";
 	$htmlString .= "<th>Description</th>";
-	$htmlString .= "<th>Price</th>";
+	$htmlString .= "<th>Price (Euro)</th>"; //Amended to euro, and changed column to decimal type in mysql PB 27 12 2013
 	$htmlString .= "<th>Taste</th>";
 	$htmlString .= "<th>Country of origin</th>";
 	$htmlString .= "<th colspan='2'>Actions</th>";
@@ -90,7 +100,8 @@ if ($result) {
 		$htmlString .=  "</td>";
 
 		$htmlString .=  "<td>";
-		$htmlString .=  $product["country"];
+		// Get the country name from the countries db PB 27 12 2013
+		$htmlString .=	$countriesArray[($product["country_id"]) -1]['country_name'];
 		$htmlString .=  "</td>";
 		
 		

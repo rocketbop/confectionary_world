@@ -9,7 +9,9 @@ table {
 	padding: 1em;
 }
 
-
+.center {
+	text-align: center;
+}
 
 .insert-form h3 {
 	text-align: center;
