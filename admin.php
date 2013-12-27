@@ -104,10 +104,10 @@ if ($result) {
 		$htmlString .=	$countriesArray[($product["country_id"]) -1]['country_name'];
 		$htmlString .=  "</td>";
 		
-		
-		$htmlString .=  "<td>";
+		//Deleted as editing not requested by the client. PB 27 12 2013
+/*		$htmlString .=  "<td>";
 		$htmlString .=  output_edit_link($product["product_id"]);
-		$htmlString .=  "</td>";
+		$htmlString .=  "</td>";*/
 		
 		$htmlString .=  "<td>";
 		$htmlString .=  output_delete_link($product["product_id"], 'product_id', 'products');
