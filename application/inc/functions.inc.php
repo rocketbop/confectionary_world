@@ -11,10 +11,7 @@ defined('MY_APP') or die('Restricted access');
 // Used a swtich statement instead of ifs and fixed a logic error as was always returning true. PB 26 12 2013
 // Removed mf_id and taste validation, as always selected by default. PB 26 12 2013
 function validateProduct($product) { 
-	
-
 	$productValid = true;
-	
 	switch("") {
 
 		case ($product['title']):
@@ -31,6 +28,17 @@ function validateProduct($product) {
 		break;
 	}
 	return $productValid;
+}
+
+//Added simple validator PB 27 12 2013
+function validateManufacturer($manufacturer) { 
+
+	$manufacturerValid = false;
+	if ($manufacturer['mf_title']) {
+		$manufacturerValid = true;
+	}
+
+	return $manufacturerValid;
 }
 
 /*
@@ -52,6 +60,18 @@ function saveProduct($product) {
 		die("error" . mysql_error());
 	} 
 	return mysql_insert_id();	
+}
+
+// New function PB 27 12 2013
+function saveManufacturer($manufacturer) {
+	$sqlQuery = "INSERT INTO `mfs` (`mf_title`) VALUES ('{$manufacturer['mf_title']}')";
+	$result = mysql_query($sqlQuery);
+
+	if (!$result) {
+		echo $sqlQuery;
+		die("error" . mysql_error());
+	} 
+	return mysql_insert_id();
 }
 
 /* 

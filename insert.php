@@ -33,7 +33,6 @@ $product['mf_id'] = 0;
 $product['movie_id']= 0;
 
 if (!empty($_POST)) {
-	echo "<p>Hello</p>";
 	// echo "<p> Not empty </p>"; //Check that the above condition satisfied. PB 23 12 2013
 	$product = array();
 	$product['title'] = htmlspecialchars(strip_tags($_POST["title"]));

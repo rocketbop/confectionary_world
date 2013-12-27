@@ -29,21 +29,19 @@ include (TEMPLATE_PATH . "/header.html");
 ?>
 
 <div class="container">
-<div class="row">
-<div class="span12 center">
-<h1>Meet Our Makers</h1>
-<p>The manufacturers currently making our products</p>
-</div>
-</div>
-<div clas="row">
-<div class="span9">
+	<div class="row">
+		<div class="span12 center">
+			<h1>Meet Our Makers</h1>
+			<p>The manufacturers currently making our products</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="span12 clear">
 
 <?php 
 
 $sqlQuery = "SELECT * FROM `mfs`"; // Get everything from mfs db PB 26 12 2013
 $result = mysql_query($sqlQuery);
-
-
 
 if ($result) {
 	$htmlString	= ""; // Cast as a string PB 26 12 2013
@@ -65,63 +63,37 @@ if ($result) {
 		$htmlString .=  "<td>";
 		$htmlString .=  output_delete_link($manufacturers["mf_id"], 'mf_id', 'mfs');
 		$htmlString .=  "</td>";
-
+		$htmlString .=  "</tr>"; //Closed table row PB 27 12 2013
 	}
-
+	$htmlString .= "</table>"; //Close table PB 27 12 2013
 }
 echo $htmlString;
 
-
-
-
-
-
-
-
-
-
-$product = array();
-$product['mf_id'] = 0;
-$product['movie_id']= 0;
+$manufacturer = array();
+$manufacturer['mf_id'] = 0;
+$manufacturer['mf_title']= "";
 
 if (!empty($_POST)) {
 	
-	// echo "<p> Not empty </p>"; //Check that the above condition satisfied. PB 23 12 2013
-	$product = array();
-	$product['title'] = htmlspecialchars(strip_tags($_POST["title"]));
-	$product['description'] = htmlspecialchars(strip_tags($_POST["description"]));
-	$product['price'] = (int) htmlspecialchars(strip_tags($_POST["price"])); // fixed typo in index PB 22 12 2013 included the int function 23 12 2013 PB
-	$product['taste'] = htmlspecialchars(strip_tags($_POST["taste"])); // fixed typo in taste PB 22 12 2013
-	$product['mf_id'] = (int) htmlspecialchars(strip_tags($_POST["mf_id"]));            
-    $product['product_id'] = isset($_POST["product_id"]) ? (int) $_POST["product_id"] : 0;
+	$manufacturer = array();
+	$manufacturer['mf_title'] = htmlspecialchars(strip_tags($_POST["mf_title"]));          
+    $manufacturer['mf_id'] = isset($_POST["mf_id"]) ? (int) $_POST["mf_id"] : 0;
         
 	$flashMessage = "";
-	if (validateProduct($product)) {
-		if ($product['product_id'] == 0) {
-	        // New! Save Movie returns the id of the record inserted         
-			$product_id = saveProduct($product); //Fixed function name PB 23 12 2013
-
-			if (!empty($_FILES['uploadedfile'])) {
-				uploadFiles($product_id); //Uncommented as we want to upload file at the same time PB 26 12 2013
-			}
+	if (validateManufacturer($manufacturer)) {
+		if ($manufacturer['mf_id'] == 0) {         
+			$mf_id = saveManufacturer($manufacturer);
 
 			$flashMessage = "Record has been saved";
         }
-    	else {    
-            updateMovie($product);
-			header("Location: admin.php");
-        }
 	}
-
 }//end post
-// echo constant("UPLOAD_PATH"); Test PB 26 12 2013 
-
 
 ?>
 <?php 
 $activeManufacturers = "active"; // Typo PB 27 12 2013
-$buttonLabel = "Insert Movie Record";
-include (TEMPLATE_PATH . "/header.html");
-//include (TEMPLATE_PATH . "/form_insert.html");
+$buttonLabel = "Add Manufacturer";
+//include (TEMPLATE_PATH . "/header.html");
+include (TEMPLATE_PATH . "/manufacturer_form_insert.html");
 include (TEMPLATE_PATH . "/footer.html");
 ?>
