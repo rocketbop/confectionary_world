@@ -110,7 +110,7 @@ if ($result) {
 		$htmlString .=  "</td>";
 		
 		$htmlString .=  "<td>";
-		$htmlString .=  output_delete_link($product["product_id"]);
+		$htmlString .=  output_delete_link($product["product_id"], 'product_id', 'products');
 		$htmlString .=  "</td>";
 		
 		

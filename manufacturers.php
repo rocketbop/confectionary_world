@@ -30,7 +30,7 @@ include (TEMPLATE_PATH . "/header.html");
 
 <div class="container">
 <div class="row">
-<div class="span12">
+<div class="span12 center">
 <h1>Meet Our Makers</h1>
 <p>The manufacturers currently making our products</p>
 </div>
@@ -47,11 +47,11 @@ $result = mysql_query($sqlQuery);
 
 if ($result) {
 	$htmlString	= ""; // Cast as a string PB 26 12 2013
-	$htmlString .=  "<table class='table table-bordered table-condensed table-striped' border='1'>\n";
+	$htmlString .= "<table class='table table-bordered table-condensed table-striped' border='1'>\n";
 	$htmlString .= "<tr>";
 	$htmlString .= "<th>Manufacturer ID</th>";
 	$htmlString .= "<th>Manufacturer Name</th>";
-	$htmlString .= "<th colspan='2'>Actions</th>";
+	$htmlString .= "<th>Action</th>";
 	$htmlString .= "</tr>";
 
 	while ($manufacturers = mysql_fetch_assoc($result)) {
@@ -62,7 +62,9 @@ if ($result) {
 		$htmlString .=  "<td>";
 		$htmlString .= $manufacturers["mf_title"];
 		$htmlString .=  "</td>";
-
+		$htmlString .=  "<td>";
+		$htmlString .=  output_delete_link($manufacturers["mf_id"], 'mf_id', 'mfs');
+		$htmlString .=  "</td>";
 
 	}
 
@@ -117,9 +119,9 @@ if (!empty($_POST)) {
 
 ?>
 <?php 
-$activeManuacturers = "active";
+$activeManufacturers = "active"; // Typo PB 27 12 2013
 $buttonLabel = "Insert Movie Record";
 include (TEMPLATE_PATH . "/header.html");
-include (TEMPLATE_PATH . "/form_insert.html");
+//include (TEMPLATE_PATH . "/form_insert.html");
 include (TEMPLATE_PATH . "/footer.html");
 ?>

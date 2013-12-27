@@ -114,7 +114,7 @@ function updateMovie($product) {
 }
 
 
-function deleteProduct($id) {
+/*function deleteProduct($id) {
     $productID = (int) $id;
     $sqlQuery = "DELETE FROM `products` WHERE `product_id` = $productID;"; // Put in name of table to be deleted PB 23 12 2013
     
@@ -122,6 +122,16 @@ function deleteProduct($id) {
     if (!$result) {
 		die("error" . mysql_error());
         }
+}*/
+
+// Created a DRY function to replace deleteProduct which is too hardcoded PB 27 12 2013
+function deleteRow($id, $idName, $tableName) {
+	$rowID = (int) $id;
+	$sqlQuery = "DELETE FROM `$tableName` WHERE `$idName` = $rowID;";
+	$result = mysql_query($sqlQuery);
+	if (!$result) {
+		die("Error" . mysql_error());
+	}
 }
 
 
@@ -150,9 +160,9 @@ function output_edit_link($id) {
 	
 	
 }
-function output_delete_link($id) {
+function output_delete_link($id, $idName, $tableName) {
 
-	return "<a href='delete.php?id=$id'>Delete</a>"; //Amended to delete.php PB 22 12 2013
+	return "<a href='delete.php?id=$id&idName=$idName&tableName=$tableName'>Delete</a>"; //Amended to delete.php PB 22 12 2013
 
 
 }
